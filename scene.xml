@@ -1,0 +1,79 @@
+<scene version="3.0.0">
+    <!-- ========================================================= -->
+    <!-- 1. 材质占位符 (Sionna 实际上主要读取 Python 中的定义) -->
+    <!-- ========================================================= -->
+    <bsdf type="diffuse" id="itu_concrete">
+        <rgb name="reflectance" value="0.5, 0.5, 0.5"/>
+    </bsdf>
+    <bsdf type="diffuse" id="itu_wood">
+        <rgb name="reflectance" value="0.4, 0.2, 0.1"/>
+    </bsdf>
+    <bsdf type="dielectric" id="itu_glass">
+        <float name="int_ior" value="1.5"/>
+        <float name="ext_ior" value="1.0"/>
+    </bsdf>
+    <bsdf type="diffuse" id="itu_floor">
+        <rgb name="reflectance" value="0.3, 0.3, 0.3"/>
+    </bsdf>
+    <bsdf type="conductor" id="itu_metal">
+        <string name="material" value="Al"/>
+    </bsdf>
+
+    <!-- ========================================================= -->
+    <!-- 2. 模型加载 -->
+    <!-- ========================================================= -->
+    <shape type="ply">
+        <string name="filename" value="ceiling.ply"/>
+        <ref id="itu_concrete"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="chair.ply"/>
+        <ref id="itu_wood"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="chairleg.ply"/>
+        <ref id="itu_wood"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="floor.ply"/>
+        <ref id="itu_floor"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="pillar.ply"/>
+        <ref id="itu_concrete"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="table.ply"/>
+        <ref id="itu_wood"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="TV.ply"/>
+        <ref id="itu_metal"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="wall.ply"/>
+        <ref id="itu_concrete"/>
+    </shape>
+
+    <shape type="ply">
+        <string name="filename" value="window.ply"/>
+        <ref id="itu_glass"/>
+    </shape>
+
+    <!-- ========================================================= -->
+    <!-- 3. 传感器 -->
+    <!-- ========================================================= -->
+    <sensor type="perspective">
+        <float name="fov" value="90"/>
+        <transform name="to_world">
+            <lookat origin="0, 0, 0" target="0, 1, 0" up="0, 0, 1"/>
+        </transform>
+    </sensor>
+</scene>
